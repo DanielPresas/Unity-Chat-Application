@@ -1,0 +1,16 @@
+C:\Repos\Unity\NetworkChatApp\GameServer\bin\Debug\net5.0\GameServer.exe
+C:\Repos\Unity\NetworkChatApp\GameServer\bin\Debug\net5.0\GameServer.deps.json
+C:\Repos\Unity\NetworkChatApp\GameServer\bin\Debug\net5.0\GameServer.runtimeconfig.json
+C:\Repos\Unity\NetworkChatApp\GameServer\bin\Debug\net5.0\GameServer.runtimeconfig.dev.json
+C:\Repos\Unity\NetworkChatApp\GameServer\bin\Debug\net5.0\GameServer.dll
+C:\Repos\Unity\NetworkChatApp\GameServer\bin\Debug\net5.0\ref\GameServer.dll
+C:\Repos\Unity\NetworkChatApp\GameServer\bin\Debug\net5.0\GameServer.pdb
+C:\Repos\Unity\NetworkChatApp\GameServer\obj\Debug\net5.0\GameServer.csprojAssemblyReference.cache
+C:\Repos\Unity\NetworkChatApp\GameServer\obj\Debug\net5.0\GameServer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Repos\Unity\NetworkChatApp\GameServer\obj\Debug\net5.0\GameServer.AssemblyInfoInputs.cache
+C:\Repos\Unity\NetworkChatApp\GameServer\obj\Debug\net5.0\GameServer.AssemblyInfo.cs
+C:\Repos\Unity\NetworkChatApp\GameServer\obj\Debug\net5.0\GameServer.csproj.CoreCompileInputs.cache
+C:\Repos\Unity\NetworkChatApp\GameServer\obj\Debug\net5.0\GameServer.dll
+C:\Repos\Unity\NetworkChatApp\GameServer\obj\Debug\net5.0\ref\GameServer.dll
+C:\Repos\Unity\NetworkChatApp\GameServer\obj\Debug\net5.0\GameServer.pdb
+C:\Repos\Unity\NetworkChatApp\GameServer\obj\Debug\net5.0\GameServer.genruntimeconfig.cache
