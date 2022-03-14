@@ -98,7 +98,7 @@ public class Client : MonoBehaviour {
             try {
                 int rBufferSize = _stream.EndRead(result);
                 if(rBufferSize <= 0) {
-                    get.Disconnect("No data in TCP stream");
+                    Disconnect("No data in TCP stream");
                     return;
                 }
 

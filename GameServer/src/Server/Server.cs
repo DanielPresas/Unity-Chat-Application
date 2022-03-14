@@ -10,7 +10,7 @@ namespace GameServer {
 
         public delegate void PacketHandler(int fromClient, Packet packet);
         public static Dictionary<int, PacketHandler> packetHandlers;
-        public static Dictionary<int, Client> clients = new Dictionary<int, Client>();
+        public static Dictionary<int, Client> clients = new();
 
         private static TcpListener _tcpListener;
         private static UdpClient _udpListener;
@@ -73,23 +73,22 @@ namespace GameServer {
 
         private static void UDPReceiveCallback(IAsyncResult result) {
             try {
-                IPEndPoint clientEndPoint = new IPEndPoint(IPAddress.Any, 0);
+                var clientEndPoint = new IPEndPoint(IPAddress.Any, 0);
                 byte[] data = _udpListener.EndReceive(result, ref clientEndPoint);
                 _udpListener.BeginReceive(UDPReceiveCallback, null);
                 if(data.Length < 4) return;
 
-                using(var packet = new Packet(data)) {
-                    int clientId = packet.ReadInt();
-                    if(clientId == 0) return;
+                using var packet = new Packet(data);
+                int clientId = packet.ReadInt();
+                if(clientId == 0) return;
 
-                    if(clients[clientId].udp.endPoint == null) {
-                        clients[clientId].udp.Connect(clientEndPoint);
-                        return;
-                    }
+                if(clients[clientId].udp.endPoint == null) {
+                    clients[clientId].udp.Connect(clientEndPoint);
+                    return;
+                }
 
-                    if(clients[clientId].udp.endPoint.ToString() == clientEndPoint.ToString()) {
-                        clients[clientId].udp.HandleData(packet);
-                    }
+                if(clients[clientId].udp.endPoint.ToString() == clientEndPoint.ToString()) {
+                    clients[clientId].udp.HandleData(packet);
                 }
             } catch(Exception e) {
                 Logger.Error("Server", $"Error receiving UDP data: {e}");

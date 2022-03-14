@@ -23,7 +23,7 @@ namespace GameServer {
     }
 
     public class Packet : IDisposable {
-        private List<byte> _buffer = new List<byte>();
+        private List<byte> _buffer = new();
         private byte[] _readableBuffer;
         private int _readPos = 0;
 
@@ -171,31 +171,31 @@ namespace GameServer {
         }
 
         public Vector2 ReadVector2(bool moveReadPos = true) {
-            var x = ReadFloat();
-            var y = ReadFloat();
+            var x = ReadFloat(moveReadPos);
+            var y = ReadFloat(moveReadPos);
             return new Vector2(x, y);
         }
 
         public Vector3 ReadVector3(bool moveReadPos = true) {
-            var x = ReadFloat();
-            var y = ReadFloat();
-            var z = ReadFloat();
+            var x = ReadFloat(moveReadPos);
+            var y = ReadFloat(moveReadPos);
+            var z = ReadFloat(moveReadPos);
             return new Vector3(x, y, z);
         }
 
         public Vector4 ReadVector4(bool moveReadPos = true) {
-            var x = ReadFloat();
-            var y = ReadFloat();
-            var z = ReadFloat();
-            var w = ReadFloat();
+            var x = ReadFloat(moveReadPos);
+            var y = ReadFloat(moveReadPos);
+            var z = ReadFloat(moveReadPos);
+            var w = ReadFloat(moveReadPos);
             return new Vector4(x, y, z, w);
         }
 
         public Quaternion ReadQuaternion(bool moveReadPos = true) {
-            var x = ReadFloat();
-            var y = ReadFloat();
-            var z = ReadFloat();
-            var w = ReadFloat();
+            var x = ReadFloat(moveReadPos);
+            var y = ReadFloat(moveReadPos);
+            var z = ReadFloat(moveReadPos);
+            var w = ReadFloat(moveReadPos);
             return new Quaternion(x, y, z, w);
         }
 

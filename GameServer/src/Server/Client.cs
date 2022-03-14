@@ -70,10 +70,9 @@ namespace GameServer {
                 while(packetLength > 0 && packetLength <= _receivedPacket.UnreadLength) {
                     byte[] packetBytes = _receivedPacket.ReadBytes(packetLength);
                     ThreadManager.ExecuteOnMainThread(() => {
-                        using(var packet = new Packet(packetBytes)) {
-                            int packetId = packet.ReadInt();
-                            Server.packetHandlers[packetId](_id, packet);
-                        }
+                        using var packet = new Packet(packetBytes);
+                        int packetId = packet.ReadInt();
+                        Server.packetHandlers[packetId](_id, packet);
                     });
                     packetLength = 0;
                     if(_receivedPacket.UnreadLength >= 4) {
@@ -109,7 +108,7 @@ namespace GameServer {
 
         public class UDPInfo {
             public IPEndPoint endPoint;
-            private int _id;
+            private int _id = 0;
 
             public UDPInfo(int clientId) {
                 _id = clientId;
@@ -132,10 +131,9 @@ namespace GameServer {
                 byte[] data = packet.ReadBytes(packetLength);
 
                 ThreadManager.ExecuteOnMainThread(() => {
-                    using(var packet = new Packet(data)) {
-                        int packetId = packet.ReadInt();
-                        Server.packetHandlers[packetId](_id, packet);
-                    }
+                    using var packet = new Packet(data);
+                    int packetId = packet.ReadInt();
+                    Server.packetHandlers[packetId](_id, packet);
                 });
             }
         }

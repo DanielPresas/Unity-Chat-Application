@@ -8,7 +8,7 @@ namespace GameServer {
         static void Main(string[] args) {
             Console.Title = "Game Server";
 
-            Thread mainThread = new Thread(new ThreadStart(MainThread));
+            Thread mainThread = new(new ThreadStart(MainThread));
             mainThread.Start();
 
             Server.Start(50, 26950);
@@ -17,13 +17,13 @@ namespace GameServer {
         private static void MainThread() {
             Logger.Info("Main", "Main thread started.");
             Logger.Info("Main", $"Running server at {Constants.TICKS_PER_SECOND} ticks per second.");
-            
-            DateTime nextLoop = DateTime.Now;
+
+            DateTime nextLoop = DateTime.UtcNow;
             while(_isRunning) {
-                while(nextLoop < DateTime.Now) {
+                while(nextLoop < DateTime.UtcNow) {
                     GameLogic.Update();
                     nextLoop = nextLoop.AddMilliseconds(Constants.MS_PER_TICK);
-                    if(nextLoop > DateTime.Now) Thread.Sleep(nextLoop - DateTime.Now);
+                    if(nextLoop > DateTime.UtcNow) Thread.Sleep(nextLoop - DateTime.UtcNow);
                 }
             }
         }

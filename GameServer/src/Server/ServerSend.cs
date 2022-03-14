@@ -43,54 +43,48 @@ namespace GameServer {
         // ------------------------------------------------------------------------------
 
         public static void Welcome(int toClient, string message) {
-            using(var packet = new Packet(ServerPacket.Welcome)) {
-                packet.Write(message);
-                packet.Write(toClient);
+            using var packet = new Packet(ServerPacket.Welcome);
+            packet.Write(message);
+            packet.Write(toClient);
 
-                SendTCPData(toClient, packet);
-            }
+            SendTCPData(toClient, packet);
         }
 
         public static void SpawnPlayer(int toClient, Player player) {
-            using(var packet = new Packet(ServerPacket.PlayerSpawn)) {
-                packet.Write(player.id);
-                packet.Write(player.username);
-                packet.Write(player.position);
-                packet.Write(player.rotation);
+            using var packet = new Packet(ServerPacket.PlayerSpawn);
+            packet.Write(player.id);
+            packet.Write(player.username);
+            packet.Write(player.position);
+            packet.Write(player.rotation);
 
-                SendTCPData(toClient, packet);
-            }
+            SendTCPData(toClient, packet);
         }
 
         public static void UpdatePlayerPosition(Player player) {
-            using(var packet = new Packet(ServerPacket.PlayerPosition)) {
-                packet.Write(player.id);
-                packet.Write(player.position);
-                SendUDPDataToAll(packet);
-            }
+            using var packet = new Packet(ServerPacket.PlayerPosition);
+            packet.Write(player.id);
+            packet.Write(player.position);
+            SendUDPDataToAll(packet);
         }
 
         public static void UpdatePlayerRotation(Player player) {
-            using(var packet = new Packet(ServerPacket.PlayerRotation)) {
-                packet.Write(player.id);
-                packet.Write(player.rotation);
-                SendUDPDataToAllExcept(player.id, packet);
-            }
+            using var packet = new Packet(ServerPacket.PlayerRotation);
+            packet.Write(player.id);
+            packet.Write(player.rotation);
+            SendUDPDataToAllExcept(player.id, packet);
         }
 
         public static void PlayerChatMessage(Player player, string message) {
-            using(var packet = new Packet(ServerPacket.PlayerChatReceived)) {
-                packet.Write(player.username);
-                packet.Write(message);
-                SendTCPDataToAll(packet);
-            }
+            using var packet = new Packet(ServerPacket.PlayerChatReceived);
+            packet.Write(player.username);
+            packet.Write(message);
+            SendTCPDataToAll(packet);
         }
 
         public static void ServerMessage(string message) {
-            using(var packet = new Packet(ServerPacket.ServerMessage)) {
-                packet.Write(message);
-                SendTCPDataToAll(packet);
-            }
+            using var packet = new Packet(ServerPacket.ServerMessage);
+            packet.Write(message);
+            SendTCPDataToAll(packet);
         }
     }
 }
